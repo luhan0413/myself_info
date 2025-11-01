@@ -1,0 +1,165 @@
+/* 移除 body 的背景，因為背景將由左右兩欄各自控制 */
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* 移除了 display: grid 和 background 相關設定 */
+}
+
+/* 將 .home 容器改為 Flexbox 佈局，使其成為一個佔滿全螢幕的兩欄式容器 */
+.home {
+  display: flex;
+  min-height: 100vh; /* 確保容器至少和視窗一樣高 */
+}
+
+/* 右側的文字內容區 (.intro) */
+.intro {
+  flex-basis: 55%; /* 設定此區塊佔 55% 的寬度 */
+  order: 2; /* 透過 order: 2 讓它顯示在右邊 */
+  background-color: #FEF6F5; /* 參考圖片設定的淡粉色背景 */
+
+  /* 使用 Flexbox 將內部所有內容垂直、水平置中 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  /* 移除了原有的玻璃擬態樣式 (background, border-radius, box-shadow 等) */
+}
+
+/* 左側的照片區 (.photo) */
+.photo {
+  flex-basis: 45%; /* 設定此區塊佔 45% 的寬度 */
+  order: 1; /* 透過 order: 1 讓它顯示在左邊 */
+  
+  /* 參考圖片左側的模糊漸層光暈效果 */
+  background: radial-gradient(circle at 15% 25%, #FFDAB9, transparent 50%),
+              radial-gradient(circle at 80% 30%, #F49FB9, transparent 50%),
+              radial-gradient(circle at 50% 80%, #99CCFF, transparent 50%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  /* 使用 Flexbox 將照片置中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 為了讓照片在左側容器中看起來更像範例，微調照片樣式 */
+.myphoto {
+  width: 65%; /* 讓照片寬度為其容器的 65% */
+  max-width: 350px; /* 設定一個最大寬度，避免在大螢幕上過大 */
+  height: auto;
+  aspect-ratio: 1 / 1; /* 讓圖片維持 1:1 的正方形比例 */
+  border-radius: 1.5rem;
+  object-fit: cover;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  /* 保留您原有的 transition 和 :hover 效果 */
+  transition: all 0.4s ease;
+}
+
+/* ===== 以下是您原有的其他樣式，無需更動 ===== */
+.intro article .hi {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 45px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size:3ch;
+  color: rgba(68, 11, 114, 0.708);
+}
+
+.intro article .describe{
+  margin-top: 0;
+  margin-bottom:0 ;
+  margin-bottom: 30px;
+  font-weight: 550;
+  color: rgba(136, 56, 196, 0.708);
+}
+
+.menu {
+  width: 80%; /* 讓選單容器佔其父元素寬度的 80% */
+  max-width: 350px; /* 設定一個最大寬度，避免在電腦大螢幕上過寬 */
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* 按鈕之間的垂直間距 */
+}
+
+/* 按鈕樣式 (修改後) */
+.menu a {
+  display: block;
+  text-decoration: none;
+  color: white; /* 文字顏色設為白色 */
+  background: #7526b5; /* 按鈕背景色改為圖片中的淡紫色 */
+  padding: 18px 24px; /* 增加垂直內距(padding)，讓按鈕更高 */
+  border-radius: 35px; /* 增加圓角半徑，確保按鈕呈圓潤的藥丸形狀 */
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem; /* 稍微放大字體 */
+  transition: all 0.4s ease;
+  /* 參考圖片，加上更柔和的發光陰影 */
+  box-shadow: 0 0 20px 5px rgba(200, 162, 200, 0.6); 
+  border: 1px solid rgba(255, 255, 255, 0.3); /* 加上細微的白邊，增加立體感 */
+}
+
+/* hover 效果 (修改後) */
+.menu a:hover {
+  background: #D2B4DE; /* 滑鼠懸停時，背景色稍微變亮 */
+  transform: translateY(-5px) scale(1.03); /* 增加上浮和微放大的效果 */
+  box-shadow: 0 0 30px 10px rgba(210, 180, 210, 0.7); /* 增強發光效果 */
+  color: #fff;
+}
+
+.myphoto:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(210, 140, 255, 0.7);
+}
+
+
+/* 📱 RWD：在手機版上改為上下排列 */
+@media (max-width: 768px) {
+  .home {
+    flex-direction: column; /* 將排列方向改為垂直 */
+  }
+
+  /* 在手機上，讓區塊恢復 HTML 中的原始順序 (照片在上，文字在下) */
+  .photo, .intro {
+    order: 0; /* 重設 order 屬性 */
+    flex-basis: auto; /* 重設寬度 */
+  }
+
+  .photo {
+    min-height: 40vh; /* 在手機版給予照片區一個基本高度 */
+  }
+  
+  .intro {
+    min-height: 60vh; /* 在手機版給予內容區一個基本高度 */
+  }
+}
+
+/* ===== 滑鼠光暈效果 (保留不動) ===== */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgb(233, 231, 173) 0%, rgba(210,150,255,0.15) 60%, transparent 80%);
+  filter: blur(60px);
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  z-index: 9999;
+}

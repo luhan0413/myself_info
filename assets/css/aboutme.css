@@ -1,0 +1,167 @@
+/* aboutme 頁面專屬的 body 樣式 */
+body {
+    background: #cdb5b584 !important;  /* 覆蓋 common.css 的漸層背景，改為淺灰色 */
+}
+
+/* 時間軸容器 */
+.timeline-container {
+    position: relative;
+    max-width: 1200px;  /* 從 900px 增加到 1200px，讓整體更寬敞 */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* 時間軸的垂直虛線 */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background-image: linear-gradient(to bottom, #ccc 50%, transparent 50%);
+    background-size: 1px 12px;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* 每個時間點項目 */
+.timeline-item {
+    padding: 40px 0;  /* 從 20px 增加到 40px，增加上下間隔 */
+    display: flex;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+    opacity: 0; /* 預設隱藏，用於動畫 */
+    transform: translateY(50px); /* 預設向下位移，用於動畫 */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* 將奇數項目放在左邊 */
+.timeline-item:nth-child(odd) {
+    left: 0;
+    padding-right: 40px;
+    justify-content: flex-end;
+    /* 移除 text-align: right，讓文字靠左對齊 */
+}
+
+/* 將偶數項目放在右邊 */
+.timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: 40px;
+}
+
+/* 時間軸上的圓點 */
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    background-color: #777;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -8px; /* 剛好在垂直線中間 */
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -8px; /* 剛好在垂直線中間 */
+}
+
+/* 內容區塊 */
+.timeline-photo {
+    flex: 2;  /* 從 1.5 增加到 2，讓圖片區域佔更多空間 */
+    max-width: 400px;  /* 從 250px 增加到 400px */
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* 讓圖片和文字都置中 */
+}
+
+.timeline-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 5px;  /* 減少圖片和 span 之間的間隔 */
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* 添加過渡效果 */
+    cursor: pointer;  /* 滑鼠指標變成手型 */
+}
+
+.timeline-photo img:hover {
+    transform: translateY(-5px) scale(1.05);  /* 上浮並放大 */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);  /* 陰影加深 */
+}
+
+.timeline-photo span {
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 15px;  /* span 和下一張圖片的間隔 */
+    font-weight: 500;
+}
+
+.timeline-photo img:last-of-type + span {
+    margin-bottom: 0;  /* 最後一個 span 不需要底部間隔 */
+}
+
+.timeline-content {
+    flex: 2.5;  /* 從 3 降低到 2.5，給圖片更多空間 */
+    padding: 0 30px;  /* 從 20px 增加到 30px，增加左右內距 */
+    line-height: 1.8;  /* 增加行高，讓文字更易讀 */
+    text-align: left !important;  /* 所有文字統一靠左對齊 */
+}
+
+/* 確保所有內容都靠左對齊 */
+.timeline-content h2,
+.timeline-content p,
+.timeline-content li {
+    text-align: left !important;
+}
+
+/* 讓偶數項目的照片在左邊 */
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+
+/* 當項目可見時的動畫效果 */
+.timeline-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 響應式設計：在小螢幕上變成單欄 */
+@media (max-width: 768px) {
+    .timeline-container::before {
+        left: 20px; /* 將垂直線移到左邊 */
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+        width: 100%;
+        left: 0;
+        padding-left: 50px;
+        padding-right: 10px;
+        flex-direction: row-reverse; /* 統一照片在左，文字在右 */
+    }
+
+    .timeline-item:nth-child(odd) {
+        justify-content: flex-start;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        text-align: left;
+    }
+
+    .timeline-dot,
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 12px;
+    }
+}

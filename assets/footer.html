@@ -1,0 +1,45 @@
+<!-- Footer 的 CSS 樣式 -->
+<style>
+  /* 【關鍵新增】設定 footer 標籤本身的全域樣式 */
+  footer {
+    width: 100%; /* 確保 footer 佔滿整個寬度 */
+    padding: 2rem 0; /* 設定上下的內邊距 */
+    background-color: #f1f1f1; /* 設定背景顏色 */
+    color: #555;
+    border-top: 1px solid #ddd;
+    box-sizing: border-box; /* 避免 padding 影響寬度計算 */
+  }
+
+  /* Footer 內部容器的樣式 */
+  footer .footer-container {
+    max-width: 1200px;
+    margin: 0 auto; /* 水平置中容器 */
+    padding: 0 2rem; /* 在容器左右增加內邊距 */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  /* 版權文字樣式 */
+  footer .copyright {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  /* RWD 手機版 */
+  @media (max-width: 768px) {
+    footer .footer-container {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>
+
+<!-- Footer 的 HTML 結構 -->
+<footer>
+  <div class="footer-container">
+    <p class="copyright">© Yi-Han Lu.</p>
+  </div>
+</footer>
