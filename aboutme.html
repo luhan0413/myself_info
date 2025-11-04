@@ -6,10 +6,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/common.css">
   <link rel="stylesheet" href="assets/css/aboutme.css">
+
 </head>
 <body>
   <header></header>
-  <main class="timeline-container">
+  
+  <!-- 分頁切換按鈕 -->
+  <div class="tabs-container">
+    <button class="tab-button active" data-tab="growth">成長經歷</button>
+    <button class="tab-button" data-tab="experience">工作經驗與經歷證明</button>
+  </div>
+
+  <!-- 成長經歷分頁 -->
+  <main class="timeline-container tab-content active" id="growth-tab">
         <!-- ===== 階段 5: 大學專題發表 ===== -->
         <!-- 我們將最新的放在最上面，這樣使用者一進來就看到你目前的狀態 -->
         <div class="timeline-item">
@@ -96,6 +105,117 @@
                    高中的這些經驗是我研究資訊與生醫科技領域的起點。</p>
             </div>
         </div>
+    </main>
+
+    <!-- 工作經驗與證明分頁 -->
+    <main class="experience-container tab-content" id="experience-tab">
+        
+        <!-- 工作經驗區塊 -->
+        <section class="experience-section">
+            <h2 class="section-title">工作經驗與經歷證明</h2>
+            
+            <div class="experience-card">
+                <div class="card-header">
+                    <h3>人工智慧研發產學中心 - 實習證明</h3>
+                    <span class="period">2024年9月 ~ 2025年10月</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <p><strong>單位：</strong>國立高雄師範大學 - 人工智慧研發產學中心</p>
+                        <p><strong>專案：</strong>整合深度學習與自動化工作流之智慧交通執法平台架構與實作</p>
+                        <ul>
+                            <li>開發基於 YOLOv8 的即時檢測系統</li>
+                            <li>建置 React + Flask 全端應用</li>
+                            <li>系統整合與部署經驗</li>
+                        </ul>
+                    </div>
+                    <div class="card-images">
+                        <img src="assets/photo/ai-inter.png" alt="實習證明">
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="card-header">
+                    <h3>昆士蘭大學訪問研究學生 - 邀請信</h3>
+                    <span class="period">2025年7月 ~ 2025年9月</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <p><strong>單位：</strong>The University of Queensland - School of Electrical Engineering and Computer Science</p>
+                        <p><strong>研究主題：</strong>Early Prediction of Taiwanese Breakout Stocks by Integrating Multi-Modal Temporal Graph Deep Learning and Ensemble Methods</p>
+                        <ul>
+                            <li>參與多模態時序圖深度學習模型設計與分析</li>
+                            <li>應用集成學習方法進行股價突破點預測研究</li>
+                            <li>協助研究資料前處理與模型實驗設計</li>
+                        </ul>
+                    </div>
+                    <div class="card-images">
+                        <img src="assets/photo/invitation.png" alt="邀請信">
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="card-header">
+                    <h3>昆士蘭大學訪問研究學生 - 邀請信</h3>
+                    <span class="period">2025年7月 ~ 2025年9月</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-images">
+                        <img src="assets/photo/大三下排名獎狀.jpg" alt="大三下學期排名獎狀">
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="card-header">
+                    <h3>橘子蘋果程式學苑-助教</h3>
+                    <span class="period">2023年9月 ~ 至今</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <p><strong>單位：</strong>橘子蘋果程式學苑</p>
+                        <p><strong>職責：</strong></p>
+                        <ul>
+                            <li>協助學生學習 Python、JavaScript、Scratch 等程式語言</li>
+                            <li>解答學生程式設計問題</li>
+                            <li>協助課程活動的籌備與執行</li>
+                        </ul>
+                    </div>
+                    <div class="card-images">
+                        <img src="assets/photo/test.png" alt="工作照片">
+                        <img src="assets/photo/test.png" alt="教學現場">
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="experience-card">
+                <div class="card-header">
+                    <h3>國中小家教經驗</h3>
+                    <span class="period">2023年2月 ~ 至今</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <p><strong>教學對象：</strong>國小、國中學生</p>
+                        <p><strong>教學科目與經驗：</strong></p>
+                        <ul>
+                            <li>國三會考生：數學、理化、生物</li>
+                            <li>國小安親班輔導老師</li>
+                            <li>國一生物</li>
+                            <li>國二理化</li>
+                            <li>國小三、四年級數學</li>
+                        </ul>
+                    </div>
+                    <div class="card-images">
+                        <img src="assets/photo/tutor.jpg" alt="家教教學照片">
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- 這裡可以載入您的 footer.html -->

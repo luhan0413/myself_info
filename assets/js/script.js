@@ -94,4 +94,49 @@ document.addEventListener("DOMContentLoaded", function() {
     // 初始執行一次
     checkVisibility();
   }
+
+  // --- 5. 【新增】About Me 分頁切換功能 ---
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  if (tabButtons.length > 0) {
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        // 移除所有按鈕的 active 狀態
+        tabButtons.forEach(btn => btn.classList.remove("active"));
+        // 隱藏所有分頁內容
+        tabContents.forEach(content => content.classList.remove("active"));
+
+        // 添加當前按鈕的 active 狀態
+        button.classList.add("active");
+        
+        // 顯示對應的分頁內容
+        const tabName = button.getAttribute("data-tab");
+        const targetTab = document.getElementById(`${tabName}-tab`);
+        if (targetTab) {
+          targetTab.classList.add("active");
+          
+          // 切換分頁後重新檢查時間軸項目的可見性
+          setTimeout(() => {
+            const visibleTimelineItems = targetTab.querySelectorAll(".timeline-item");
+            visibleTimelineItems.forEach(item => {
+              if (isElementInViewport(item)) {
+                item.classList.add("is-visible");
+              }
+            });
+          }, 50);
+        }
+      });
+    });
+
+    // 定義 isElementInViewport 供分頁切換使用
+    const isElementInViewport = (el) => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      return (
+        rect.top <= windowHeight * 0.8 &&
+        rect.bottom >= windowHeight * 0.2
+      );
+    };
+  }
 });
